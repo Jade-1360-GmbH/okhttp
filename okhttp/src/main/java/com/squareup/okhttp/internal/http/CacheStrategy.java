@@ -71,15 +71,17 @@ public final class CacheStrategy {
       return false;
     }
 
-    // Responses to authorized requests aren't cacheable unless they include
-    // a 'public', 'must-revalidate' or 's-maxage' directive.
+    //XXX Following is only valid in case of shared cache ; until okhttp supports this option (https://github.com/square/okhttp/issues/638)
+    //XXX and since we use it as a local (private) cache, we disable this, otherwise all our requests (which are authorized) may end up not being cached
+//    // Responses to authorized requests aren't cacheable unless they include
+//    // a 'public', 'must-revalidate' or 's-maxage' directive.
     CacheControl responseCaching = response.cacheControl();
-    if (request.header("Authorization") != null
-        && !responseCaching.isPublic()
-        && !responseCaching.mustRevalidate()
-        && responseCaching.sMaxAgeSeconds() == -1) {
-      return false;
-    }
+//    if (request.header("Authorization") != null
+//        && !responseCaching.isPublic()
+//        && !responseCaching.mustRevalidate()
+//        && responseCaching.sMaxAgeSeconds() == -1) {
+//      return false;
+//    }
 
     if (responseCaching.noStore()) {
       return false;
