@@ -20,11 +20,6 @@
 
   <modules>
     <module>okhttp</module>
-    <module>okhttp-apache</module>
-    <module>okhttp-tests</module>
-    <module>mockwebserver</module>
-    <module>samples</module>
-    <module>benchmarks</module>
   </modules>
 
   <properties>
